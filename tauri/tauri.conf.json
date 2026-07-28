@@ -7,8 +7,9 @@
   },
   "build": {
     "beforeDevCommand": "npm run dev",
+    "beforeBundleCommand": "npm run build:production",
     "devUrl": "http://localhost:1234",
-    "frontendDist": "http://localhost:1234",
+    "frontendDist": "../dist",
     "removeUnusedCommands": true
   },
   "plugins": {
@@ -22,7 +23,7 @@
     "active": true,
     "createUpdaterArtifacts": false,
     "category": "SocialNetworking",
-    "copyright": "Telegram Air",
+    "copyright": "Wavegram",
     "externalBin": [],
     "icon": [
       "icons/32x32.png",
@@ -42,9 +43,7 @@
     "resources": [],
     "shortDescription": "",
     "targets": [
-      "app",
-      "nsis",
-      "appimage"
+      "nsis"
     ],
     "windows": {
       "digestAlgorithm": "sha256",
@@ -54,5 +53,5 @@
     }
   },
   "identifier": "org.telegram.TelegramAirBeta",
-  "productName": "Telegram Air"
+  "productName": "Wavegram"
 }
