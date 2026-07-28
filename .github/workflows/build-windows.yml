@@ -40,8 +40,12 @@ jobs:
       - name: Copy dist into tauri folder
         shell: pwsh
         run: |
-          Remove-Item -Recurse -Force tauri\dist -ErrorAction SilentlyContinue
-          Copy-Item -Recurse -Force dist tauri\dist
+          if (Test-Path tauri\dist) { Remove-Item -Recurse -Force tauri\dist }
+          New-Item -ItemType Directory -Force -Path tauri\dist | Out-Null
+          Copy-Item -Path dist\* -Destination tauri\dist -Recurse -Force
+          Write-Host "=== tauri\dist contents ==="
+          Get-ChildItem tauri\dist | Select-Object -First 10 Name
+          if (Test-Path tauri\dist\index.html) { Write-Host "index.html: OK" } else { Write-Host "index.html: MISSING"; exit 1 }
 
       - name: Build Tauri app
         run: npm run tauri:build
