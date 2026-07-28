@@ -187,8 +187,8 @@ export function getDC(dcId: number, downloadDC = false) {
   // TODO Move to external config
   return {
         id: 1,
-        ipAddress: '192.168.1.100',
-        port: 30444,
+        ipAddress: '94.183.233.59',
+        port: 20443,
       };
   switch (dcId) {
     case 1:
