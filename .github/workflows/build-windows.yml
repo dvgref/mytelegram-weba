@@ -31,12 +31,22 @@ jobs:
       - name: Install frontend dependencies
         run: npm install
 
+      - name: Build frontend
+        run: npx webpack
+        env:
+          TELEGRAM_API_ID: "2040"
+          TELEGRAM_API_HASH: "b18441a1ff607e10a989891a5462e627"
+
+      - name: Copy dist into tauri folder
+        shell: pwsh
+        run: |
+          Remove-Item -Recurse -Force tauri\dist -ErrorAction SilentlyContinue
+          Copy-Item -Recurse -Force dist tauri\dist
+
       - name: Build Tauri app
         run: npm run tauri:build
         env:
           APP_ENV: production
-          TELEGRAM_API_ID: "2040"
-          TELEGRAM_API_HASH: "b18441a1ff607e10a989891a5462e627"
 
       - name: Upload installer
         uses: actions/upload-artifact@v4
