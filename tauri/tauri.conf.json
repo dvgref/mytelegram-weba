@@ -7,7 +7,7 @@
   },
   "build": {
     "beforeDevCommand": "npm run dev",
-    "beforeBundleCommand": "npm run build:production",
+    "beforeBuildCommand": "npm run build:production",
     "devUrl": "http://localhost:1234",
     "frontendDist": "../dist",
     "removeUnusedCommands": true
